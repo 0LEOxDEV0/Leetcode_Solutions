@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head.next==null) return true;
+        
+        ListNode slow= head, fast= head;
+
+        while(fast!=null && fast.next!=null){
+            slow= slow.next;
+            fast= fast.next.next;
+        }
+
+        ListNode curr= slow, tempNext= null, prev= null;
+
+        while(curr!=null){
+            tempNext = curr.next;
+            curr.next= prev;
+            prev= curr;
+            curr= tempNext;
+        }
+
+        while(prev!=null && head!=null){
+
+            if(head.val!=prev.val) return false;
+            head=head.next;
+            prev= prev.next;
+        }
+        return true;
+    }
+}
