@@ -1,0 +1,29 @@
+class Solution {
+    public String mergeCharacters(String s, int k) {
+        StringBuilder sb= new StringBuilder(s);
+
+        boolean merge= true;
+
+        while(merge){
+            merge= false;
+
+            for(int i=0; i<sb.length(); i++){
+                char tar= sb.charAt(i);
+                int idx= -1;
+
+                for(int j=i+1; j<sb.length() && j-i <=k; j++){
+                    if(sb.charAt(j)== tar){
+                        idx= j;
+                        break;
+                    }
+                }
+                if(idx!=-1){
+                    sb.deleteCharAt(idx);
+                    merge= true;
+                    break;
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
